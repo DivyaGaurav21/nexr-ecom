@@ -16,11 +16,11 @@ const ProductItem = ({ product }) => {
                             position: "relative",
                         }}
                     >
-                        <Image
+                        <img
                             src={
                                 product?.images[0]
                                     ? product?.images[0].url
-                                    : "/images/default_product.png"
+                                    : "https://www.designinfo.in/wp-content/uploads/2023/01/Apple-iPhone-14-Pro-Mobile-Phone-493177786-i-1-1200Wx1200H-485x485-optimized.jpeg"
                             }
                             alt="product anme"
                             height="240"
@@ -65,7 +65,7 @@ const ProductItem = ({ product }) => {
 
                         <p className="text-green-500">Free Shipping</p>
                         <div className="my-3">
-                            <a className="px-4 py-2 inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 cursor-pointer">
+                            <a className="px-4 py-2 inline-block text-white bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-800 cursor-pointer">
                                 {" "}
                                 Add to Cart{" "}
                             </a>

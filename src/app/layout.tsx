@@ -19,13 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} text-slate-700`}>
-       <div className='flex flex-col min-h-screen'>
-       <NavBar />
-        <main className='flex-grow'>
-          {children}
-        </main>
-        <Footer />
-       </div>
+        <div className='flex flex-col min-h-screen'>
+          <NavBar />
+          <main className='flex-grow'>
+            {children}
+          </main>
+          <Footer />
+        </div>
+        <script src="https://kit.fontawesome.com/83b993c0e4.js"></script>
       </body>
     </html>
   )

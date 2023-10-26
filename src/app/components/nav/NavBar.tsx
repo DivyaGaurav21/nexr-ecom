@@ -2,6 +2,7 @@ import Link from "next/link"
 import Container from "../Container"
 import Image from "next/image"
 import Logo from "@/../public/svg/logo-no-background.svg"
+import Search from "./Search"
 
 const NavBar = () => {
   return (
@@ -19,10 +20,26 @@ const NavBar = () => {
                 />
               </div>
             </Link>
-            <div className="hidden md:block">SEARCH</div>
-            <div className="flex items-center gap-8 md:gap-12">
-              <div>CartCount</div>
-              <div>UserMenu</div>
+            <div className="hidden md:block">
+              <Search />
+            </div>
+            <div className="flex items-center gap-3">
+              <Link
+                href="/cart"
+                className="px-3 py-2 inline-block text-center text-yellow-600 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:border-gray-300"
+              >
+                <i className="text-yellow-600 w-5 fa fa-shopping-cart"></i>
+                <span className="hidden lg:inline ml-1">
+                  Cart (<b>0</b>)
+                </span>
+              </Link>
+              <Link
+                href="/login"
+                className="px-3 py-2 inline-block text-center text-yellow-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:border-gray-300"
+              >
+                <i className="text-yellow-600 w-5 fa fa-user"></i>
+                <span className="hidden lg:inline ml-1">Sign in/Sign up</span>
+              </Link>
             </div>
           </div>
         </Container>
