@@ -22,8 +22,8 @@ const Filters = ({ children }) => {
     return (
         <div>
             <Hero />
-            <div className="flex flex-row gap-3 py-8">
-                <aside className="md:w-1/3 lg:w-1/4 px-4">
+            <div className="flex flex-row gap-1 py-8 px-2">
+                <aside className="md:w-1/3 lg:w-1/4">
                     <a
                         className="md:hidden mb-5  w-full text-center px-4 py-2 inline-block text-lg text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600"
                         href="#"
@@ -92,11 +92,11 @@ const Filters = ({ children }) => {
                                     <input
                                         name="category"
                                         type="checkbox"
-                                        value="Toys"
+                                        value="Cameras"
                                         className="h-4 w-4"
-                                        defaultChecked={checkHandler("category", "Toys")}
+                                        defaultChecked={checkHandler("category", "Cameras")}
                                     />
-                                    <span className="ml-2 text-gray-500"> Toys </span>
+                                    <span className="ml-2 text-gray-500"> Cameras </span>
                                 </label>
                             </li>
                             <li>
@@ -104,11 +104,11 @@ const Filters = ({ children }) => {
                                     <input
                                         name="category"
                                         type="checkbox"
-                                        value="Office"
+                                        value="Accessories"
                                         className="h-4 w-4"
-                                        defaultChecked={checkHandler("category", "Office")}
+                                        defaultChecked={checkHandler("category", "Accessories")}
                                     />
-                                    <span className="ml-2 text-gray-500"> Office </span>
+                                    <span className="ml-2 text-gray-500"> Accessories </span>
                                 </label>
                             </li>
                             <li>
@@ -116,11 +116,21 @@ const Filters = ({ children }) => {
                                     <input
                                         name="category"
                                         type="checkbox"
-                                        value="Beauty"
+                                        value="Headphones"
                                         className="h-4 w-4"
-                                        defaultChecked={checkHandler("category", "Beauty")}
+                                        defaultChecked={checkHandler("category", "Headphones")}
                                     />
-                                    <span className="ml-2 text-gray-500"> Beauty </span>
+                                    <span className="ml-2 text-gray-500"> Headphones </span>
+                                </label>
+                                <label className="flex items-center">
+                                    <input
+                                        name="category"
+                                        type="checkbox"
+                                        value="Sports"
+                                        className="h-4 w-4"
+                                        defaultChecked={checkHandler("category", "Sports")}
+                                    />
+                                    <span className="ml-2 text-gray-500"> Sports </span>
                                 </label>
                             </li>
                         </ul>
@@ -142,7 +152,7 @@ const Filters = ({ children }) => {
                                         <span className="ml-2 text-gray-500">
                                             {" "}
                                             <StarRatings
-                                                rating={5}
+                                                rating={rating}
                                                 starRatedColor="#ffb829"
                                                 numberOfStars={5}
                                                 starDimension="20px"

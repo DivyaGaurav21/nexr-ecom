@@ -1,20 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
-import dbConnect from '../../../backend/config/dbConnect';
-import { Product } from '../../../backend/models/product';
+import dbConnect from '@/backend/config/dbConnect';
+import { Product } from '@/backend/models/product';
 
 
 //------function to crete todo--------------------//
 export async function POST(request: NextRequest) {
     try {
-        await dbConnect();
-        const { name, description, price, seller, stock, category } = await request.json();
+        dbConnect();
+        const {
+            name,
+            description,
+            price,
+            seller,
+            stock,
+            ratings,
+            reviews,
+            category,
+            images,
+            createdAt
+        } = await request.json();
         const newProduct = new Product({
             name,
             description,
             price,
             seller,
             stock,
-            category
+            ratings,
+            reviews,
+            category,
+            images,
+            createdAt
         });
         const savedProduct = await newProduct.save();
         return NextResponse.json({
@@ -37,7 +52,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
     try {
-        await dbConnect();
+        dbConnect();
         const products = await Product.find();
         return NextResponse.json({
             message: "all Products",

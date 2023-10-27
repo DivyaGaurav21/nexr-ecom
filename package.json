@@ -24,6 +24,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-star-ratings": "^2.3.2",
     "autoprefixer": "^10",
     "postcss": "^8",
     "tailwindcss": "^3",
