@@ -48,12 +48,13 @@ const ProductItem = ({ product }) => {
                 <div className="md:w-1/4 border-t lg:border-t-0 lg:border-l-2 border-gray-200 flex flex-col justify-center items-center">
                     <div className="p-5">
                         <span className="text-2xl font-semibold text-black">
-                            ₹ {product?.price}
+                            ₹ {product?.price.toLocaleString()}
                         </span>
                         <p className="text-green-600">Free Shipping</p>
-                        <div className="my-3">
+                        <div className="my-3 text-white bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-800 cursor-pointer px-2 py-2">
+                            <i className="fa-solid fa-cart-shopping"></i>
                             <a
-                                className="px-4 py-2 inline-block text-white bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-800 cursor-pointer"
+                                className="ml-1 inline-block"
                                 role="button"
                             >
                                 Add to Cart

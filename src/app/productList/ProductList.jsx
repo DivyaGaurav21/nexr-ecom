@@ -1,4 +1,5 @@
 import ProductItem from './ProductItem'
+
 const ProductList = ({ allProductData }) => {
     return (
         <section className="container max-w-screen-xl mx-auto px-4">
