@@ -31,7 +31,7 @@ const Filters = ({ children }) => {
                         Filter by
                     </a>
                     <div className="hidden md:block px-6 py-4 border border-gray-200 bg-white rounded shadow-sm">
-                        <h3 className="font-semibold mb-2">Price ($)</h3>
+                        <h3 className="font-semibold mb-2">Price (₹)</h3>
                         <div className="grid md:grid-cols-3 gap-x-2">
                             <div className="mb-4">
                                 <input

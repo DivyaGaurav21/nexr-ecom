@@ -3,7 +3,7 @@ import StarRatings from "react-star-ratings";
 
 const SimilarProductCard = ({ similarProduct }) => {
     return (
-        <div className="w-full max-w-[320px] bg-slate-50 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="w-full max-w-[320px] bg-slate-50 border border-gray-200 hover:bg-white rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <a href={`/productList/${similarProduct._id}`}>
                 <img
                     className="p-3 w-full h-52 object-contain rounded-t-lg"
