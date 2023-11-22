@@ -45,11 +45,11 @@ const Page = ({ searchParams }) => {
             <ReactPaginate
                 onPageChange={handlePageClick}
                 pageCount={10}
-                pageClassName="flex items-center mx-2 text-gray-600 hover:text-blue-500 cursor-pointer border border-black px-3"
-                activeClassName="font-bold text-blue-500"
+                pageClassName="flex items-center mx-2 text-gray-600 hover:text-blue-500 cursor-pointer border border-gray-300 px-3 rounded-md transition duration-300 ease-in-out"
+                activeClassName="font-bold text-blue-500 bg-blue-100 border-blue-500"
                 containerClassName="pagination flex space-x-2"
-                previousClassName="flex items-center mx-2 text-gray-600 hover:text-blue-500 cursor-pointer border border-black px-2"
-                nextClassName="flex items-center mx-2 text-gray-600 hover:text-blue-500 cursor-pointer border border-black px-2"
+                previousClassName="flex items-center mx-2 text-gray-600 hover:text-blue-500 cursor-pointer border border-gray-300 px-2 rounded-md transition duration-300 ease-in-out"
+                nextClassName="flex items-center mx-2 text-gray-600 hover:text-blue-500 cursor-pointer border border-gray-300 px-2 rounded-md transition duration-300 ease-in-out"
                 previousLabel={<span>&lt; Previous</span>}
                 nextLabel={<span>Next &gt;</span>}
             />

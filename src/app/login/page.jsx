@@ -27,9 +27,8 @@ const LogIn = () => {
     return (
 
         <>
-
-            <div className='flex h-screen bg-yellow-100'>
-                <div className='m-auto bg-slate-50 rounded-xl w-[95%] h-[95%] md:w-3/5 md:h-3/4 flex flex-col md:flex-row justify-center'>
+            <div className='flex h-[85vh] bg-white'>
+                <div className='m-auto rounded-xl w-[95%] h-[95%] md:w-3/5 md:h-3/4 flex flex-col md:flex-row justify-center'>
 
                     <div className='w-[100%] md:w-1/2 h-[40%] md:h-full flex justify-center content-center'>
                         <img src="https://www.cloudways.com/blog/wp-content/uploads/Ecommerce-Shopping-Infographics.png" className='w-full rounded-s-xl' alt='logo_img' />

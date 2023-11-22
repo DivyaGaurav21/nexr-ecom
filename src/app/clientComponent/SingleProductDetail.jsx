@@ -1,9 +1,25 @@
 'use client'
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import StarRatings from "react-star-ratings";
 import BreadCrumbs from './BreadCrumbs'
+import CartContext from '../context/CartContext'
 
 const SingleProductDetail = ({ singleProductData }) => {
+
+    const { addItemToCart } = useContext(CartContext);
+
+    const addToCartHandler = () => {
+        addItemToCart({
+            product: singleProductData._id,
+            name: singleProductData.name,
+            price: singleProductData.price,
+            image: singleProductData.images[0].url,
+            stock: singleProductData.stock,
+            seller: singleProductData.seller,
+        });
+    };
+
+
     const imgRef = useRef(null);
 
     const setImgPreview = (url) => {
@@ -79,7 +95,9 @@ const SingleProductDetail = ({ singleProductData }) => {
 
                             <p className="mb-4 text-gray-500">{singleProductData?.description}</p>
 
-                            <div className="my-3">
+                            <button className="my-3"
+                                onClick={addToCartHandler}
+                            >
                                 <a
                                     className="px-4 py-2 inline-block text-white bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-800 cursor-pointer"
                                     role="button"
@@ -87,7 +105,7 @@ const SingleProductDetail = ({ singleProductData }) => {
                                     <i className="fa-solid fa-cart-shopping mr-1"></i>
                                     Add to Cart
                                 </a>
-                            </div>
+                            </button>
 
                             <ul className="mb-5">
                                 <li className="mb-1">

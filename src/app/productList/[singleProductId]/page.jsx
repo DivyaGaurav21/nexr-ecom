@@ -2,7 +2,7 @@ import axios from "axios"
 import SingleProductDetail from '@/app/clientComponent/SingleProductDetail'
 import SimilarItems from '@/app/clientComponent/SimilarItems'
 
-const singleProduct = async ({ params }: { params: { singleProductId: string } }) => {
+const singleProduct = async ({ params }) => {
     const { data } = await axios.get(`${process.env.API_URL}/api/product/${params.singleProductId}`)
     const productData = await axios.get(`${process.env.API_URL}/api/product`);
     return (

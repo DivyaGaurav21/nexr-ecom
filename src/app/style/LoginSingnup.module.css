@@ -1,5 +1,5 @@
 .loginPage{
-    @apply flex flex-wrap content-center justify-center rounded-xl bg-white w-full h-full px-7 text-slate-700;
+    @apply flex flex-wrap content-center justify-center rounded-xl bg-yellow-100 w-full h-full px-7 text-slate-700;
 }
 .loginPage h1{
   @apply text-xl font-semibold text-center;  

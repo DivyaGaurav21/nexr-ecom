@@ -37,9 +37,9 @@ const Cart = () => {
 
     return (
         <>
-            <section className="py-5 sm:py-7 bg-blue-100">
+            <section className="py-5 sm:py-7 bg-yellow-100">
                 <div className="container max-w-screen-xl mx-auto px-4">
-                    <h2 className="text-3xl font-semibold mb-2">
+                    <h2 className="text-xl font-semibold mb-2">
                         {cart?.cartItems?.length || 0} Item(s) in Cart
                     </h2>
                 </div>
@@ -160,7 +160,7 @@ const Cart = () => {
                                         </li>
                                     </ul>
 
-                                    <a className="px-4 py-3 mb-2 inline-block text-lg w-full text-center font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-700 cursor-pointer">
+                                    <a className="px-4 py-3 mb-2 inline-block text-lg w-full text-center font-medium text-white bg-red-800 border border-transparent rounded-md hover:bg-yellow-700 cursor-pointer">
                                         Continue
                                     </a>
 
