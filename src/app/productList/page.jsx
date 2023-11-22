@@ -1,12 +1,23 @@
 'use client'
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductList from './ProductList';
-import React, { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
+import queryString from 'query-string';
 
-const Page = () => {
+
+const Page = ({ searchParams }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [productData, setProductData] = useState([]);
+
+    const urlParams = {
+        keyword: searchParams.keyword,
+        page: currentPage,
+        category: searchParams.category
+    }
+
+    const searchQuery = queryString.stringify(urlParams);
+
 
     const handlePageClick = (e) => {
         setCurrentPage(e.selected + 1);
@@ -15,7 +26,7 @@ const Page = () => {
     useEffect(() => {
         const fetchInitialData = async () => {
             try {
-                const response = await axios.get(`${process.env.API_URL}/api/product?page=${currentPage}`);
+                const response = await axios.get(`${process.env.API_URL}/api/product?${searchQuery}`);
                 setProductData(response.data);
             } catch (error) {
                 console.error('Error fetching product data:', error);
@@ -23,7 +34,7 @@ const Page = () => {
         };
 
         fetchInitialData();
-    }, [currentPage]);
+    }, [currentPage, searchParams]);
 
     return (
         <div>

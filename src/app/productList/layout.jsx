@@ -1,35 +1,101 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import StarRatings from "react-star-ratings";
-import Hero from '../components/hero/Hero'
+import Hero from "../components/hero/Hero";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Filters = ({ children }) => {
-    let queryParams;
 
-    function checkHandler(checkBoxType, checkBoxValue) {
-        if (typeof window !== "undefined") {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedRating, setSelectedRating] = useState(null);
+    const [sortOrder, setSortOrder] = useState(null);
+
+    const handleCategoryChange = (value) => {
+        setSelectedCategory(value === selectedCategory ? null : value);
+    // router.push(`productList/?category=${selectedCategory}`)
+        let queryParams;
+        if (typeof window !== 'undefined') {
             queryParams = new URLSearchParams(window.location.search);
+            queryParams.set('category', value);
         }
+        const path = window.location.pathname + '?' + queryParams.toString();
+        router.push(path);
+    };
 
-        if (typeof window !== "undefined") {
-            const value = queryParams.get(checkBoxType);
-            if (checkBoxValue === value) return true;
-            return false;
+    const handleRatingChange = (value) => {
+        setSelectedRating(value === selectedRating ? null : value);
+        let queryParams;
+        if (typeof window !== 'undefined') {
+            queryParams = new URLSearchParams(window.location.search);
+            queryParams.append('rating', value);
         }
-    }
+        const path = window.location.pathname + '&' + queryParams.toString();
+        router.push(path);
+    };
+
+    const handleSortOrderChange = (order) => {
+        setSortOrder(order);
+    };
+
+
 
     return (
         <div>
             <Hero />
             <div className="flex flex-row gap-1 py-8 px-2">
                 <aside className="md:w-1/3 lg:w-1/4">
-                    <a
-                        className="md:hidden mb-5  w-full text-center px-4 py-2 inline-block text-lg text-gray-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:text-blue-600"
-                        href="#"
-                    >
-                        Filter by
-                    </a>
+                    {/* ... Existing code ... */}
+
+                    <div className="hidden md:block px-6 py-4 border border-gray-200 bg-white rounded shadow-sm">
+                        <h3 className="font-semibold mb-2">Sort Order</h3>
+                        <div className="flex items-center space-x-2">
+                            <button
+                                onClick={() => handleSortOrderChange("lowToHigh")}
+                                className={`px-2 py-1 text-center w-full inline-block text-white bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-800 ${sortOrder === "lowToHigh" ? "bg-yellow-800" : ""
+                                    }`}
+                            >
+                                Low to High
+                            </button>
+                            <button
+                                onClick={() => handleSortOrderChange("highToLow")}
+                                className={`px-2 py-1 text-center w-full inline-block text-white bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-800 ${sortOrder === "highToLow" ? "bg-yellow-800" : ""
+                                    }`}
+                            >
+                                High to Low
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="hidden md:block px-6 py-4 border border-gray-200 bg-white rounded shadow-sm">
+                        <h3 className="font-semibold mb-2">Category</h3>
+                        <ul className="space-y-1">
+                            {/* Modify the category checkboxes to allow only one selection */}
+                            {["Electronics", "Laptops", "Cameras", "Accessories", "Headphones", "Sports"].map(
+                                (category) => (
+                                    <li key={category}>
+                                        <label className="flex items-center">
+                                            <input
+                                                name="category"
+                                                type="radio"
+                                                value={category}
+                                                checked={category === selectedCategory}
+                                                onChange={() => handleCategoryChange(category)}
+                                                className="h-4 w-4"
+                                            />
+                                            <span className="ml-2 text-gray-500">{category}</span>
+                                        </label>
+                                    </li>
+                                )
+                            )}
+                        </ul>
+                    </div>
+
+
                     <div className="hidden md:block px-6 py-4 border border-gray-200 bg-white rounded shadow-sm">
                         <h3 className="font-semibold mb-2">Price (₹)</h3>
                         <div className="grid md:grid-cols-3 gap-x-2">
@@ -60,83 +126,6 @@ const Filters = ({ children }) => {
                     </div>
 
                     <div className="hidden md:block px-6 py-4 border border-gray-200 bg-white rounded shadow-sm">
-                        <h3 className="font-semibold mb-2">Category</h3>
-
-                        <ul className="space-y-1">
-                            <li>
-                                <label className="flex items-center">
-                                    <input
-                                        name="category"
-                                        type="checkbox"
-                                        value="Electronics"
-                                        className="h-4 w-4"
-                                        defaultChecked={checkHandler("category", "Electronics")}
-                                    />
-                                    <span className="ml-2 text-gray-500"> Electronics </span>
-                                </label>
-                            </li>
-                            <li>
-                                <label className="flex items-center">
-                                    <input
-                                        name="category"
-                                        type="checkbox"
-                                        value="Laptops"
-                                        className="h-4 w-4"
-                                        defaultChecked={checkHandler("category", "Laptops")}
-                                    />
-                                    <span className="ml-2 text-gray-500"> Laptops </span>
-                                </label>
-                            </li>
-                            <li>
-                                <label className="flex items-center">
-                                    <input
-                                        name="category"
-                                        type="checkbox"
-                                        value="Cameras"
-                                        className="h-4 w-4"
-                                        defaultChecked={checkHandler("category", "Cameras")}
-                                    />
-                                    <span className="ml-2 text-gray-500"> Cameras </span>
-                                </label>
-                            </li>
-                            <li>
-                                <label className="flex items-center">
-                                    <input
-                                        name="category"
-                                        type="checkbox"
-                                        value="Accessories"
-                                        className="h-4 w-4"
-                                        defaultChecked={checkHandler("category", "Accessories")}
-                                    />
-                                    <span className="ml-2 text-gray-500"> Accessories </span>
-                                </label>
-                            </li>
-                            <li>
-                                <label className="flex items-center">
-                                    <input
-                                        name="category"
-                                        type="checkbox"
-                                        value="Headphones"
-                                        className="h-4 w-4"
-                                        defaultChecked={checkHandler("category", "Headphones")}
-                                    />
-                                    <span className="ml-2 text-gray-500"> Headphones </span>
-                                </label>
-                                <label className="flex items-center">
-                                    <input
-                                        name="category"
-                                        type="checkbox"
-                                        value="Sports"
-                                        className="h-4 w-4"
-                                        defaultChecked={checkHandler("category", "Sports")}
-                                    />
-                                    <span className="ml-2 text-gray-500"> Sports </span>
-                                </label>
-                            </li>
-                        </ul>
-
-                        <hr className="my-4" />
-
                         <h3 className="font-semibold mb-2">Ratings</h3>
                         <ul className="space-y-1">
                             <li>
@@ -144,10 +133,10 @@ const Filters = ({ children }) => {
                                     <label key={rating} className="flex items-center">
                                         <input
                                             name="ratings"
-                                            type="checkbox"
+                                            type="radio"
                                             value={rating}
                                             className="h-4 w-4"
-                                            defaultChecked={checkHandler("ratings", `${rating}`)}
+                                            onChange={() => handleRatingChange(rating)}
                                         />
                                         <span className="ml-2 text-gray-500">
                                             {" "}
@@ -158,19 +147,17 @@ const Filters = ({ children }) => {
                                                 starDimension="20px"
                                                 starSpacing="2px"
                                                 name="rating"
-                                            />{" "}
+                                            />{" "} {rating == 5 ? " " : "& Up"}
                                         </span>
                                     </label>
                                 ))}
                             </li>
                         </ul>
                     </div>
+
                 </aside>
-                <div
-                    className="md:w-2/3 lg:w-3/4 px-4"
-                >
-                    {children}
-                </div>
+
+                <div className="md:w-2/3 lg:w-3/4 px-4">{children}</div>
             </div>
         </div>
     );

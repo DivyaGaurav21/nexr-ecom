@@ -71,6 +71,7 @@ export async function POST(request) {
 
 export async function GET(req, res) {
     const { searchParams } = new URL(req.url);
+    console.log(searchParams)
     const resPerPage = 3;
 
     try {

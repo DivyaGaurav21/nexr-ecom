@@ -1,8 +1,4 @@
-interface ContainerProps {
-    children: React.ReactNode
-}
-
-const Container = ({ children }: ContainerProps) => {
+const Container = ({ children }) => {
     return (
         <div className="mx-auto xl:px-12 md:px-8 px-4">
             {children}
