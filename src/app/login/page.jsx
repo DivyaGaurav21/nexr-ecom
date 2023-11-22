@@ -5,7 +5,7 @@ import Styles from '../style/LoginSingnup.module.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
-import { useFirebaseAppContext } from '../authcontext/FirebaseContext'
+import { useFirebaseAppContext } from '../context/FirebaseContext'
 
 
 const LogIn = () => {

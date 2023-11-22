@@ -13,10 +13,13 @@ const Page = ({ searchParams }) => {
     const urlParams = {
         keyword: searchParams.keyword,
         page: currentPage,
-        category: searchParams.category
+        category: searchParams.category,
+        sort: searchParams.sort,
+        rating: searchParams.rating
     }
 
     const searchQuery = queryString.stringify(urlParams);
+    console.log(searchQuery);
 
 
     const handlePageClick = (e) => {

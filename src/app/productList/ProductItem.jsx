@@ -1,9 +1,23 @@
 'use client'
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import StarRatings from "react-star-ratings";
+import CartContext from '../context/CartContext'
 
 const ProductItem = ({ product }) => {
+    const { addItemToCart } = useContext(CartContext);
+
+    const addToCartHandler = () => {
+        addItemToCart({
+            product: product._id,
+            name: product.name,
+            price: product.price,
+            image: product.images[0].url,
+            stock: product.stock,
+            seller: product.seller,
+        });
+    };
+
     return (
         <article className="border border-gray-200 overflow-hidden bg-white shadow-sm rounded mb-5">
             <div className="flex flex-col md:flex-row">
@@ -51,7 +65,9 @@ const ProductItem = ({ product }) => {
                             ₹ {product?.price.toLocaleString()}
                         </span>
                         <p className="text-green-600">Free Shipping</p>
-                        <div className="my-3 text-white bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-800 cursor-pointer px-2 py-2">
+                        <button className="my-3 text-white bg-yellow-600 border border-transparent rounded-md hover:bg-yellow-800 cursor-pointer px-2 py-2"
+                            onClick={addToCartHandler}
+                        >
                             <i className="fa-solid fa-cart-shopping"></i>
                             <a
                                 className="ml-1 inline-block"
@@ -59,7 +75,7 @@ const ProductItem = ({ product }) => {
                             >
                                 Add to Cart
                             </a>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>

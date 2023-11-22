@@ -1,10 +1,17 @@
+'use client'
+import React, { useContext } from "react"
 import Link from "next/link"
 import Container from "../Container"
 import Image from "next/image"
 import Logo from "@/../public/svg/logo-no-background.svg"
 import Search from "./Search"
+import CartContext from '../../context/CartContext'
 
 const NavBar = () => {
+
+  const { cart } = useContext(CartContext);
+  const cartItems = cart?.cartItems;
+
   return (
     <div className="sticky top-0 w-full bg-red-950 z-30 shadow-xl text-white">
       <div className="py-2 border-b-[1px]">
@@ -30,7 +37,7 @@ const NavBar = () => {
               >
                 <i className="text-yellow-600 w-5 fa fa-shopping-cart"></i>
                 <span className="hidden lg:inline ml-1">
-                  Cart (<b>0</b>)
+                  Cart (<b>{cartItems?.length || 0}</b>)
                 </span>
               </Link>
               <Link

@@ -15,8 +15,12 @@ class APIFilters {
     filter() {
         const category = this.queryStr.category;
         const sort = this.queryStr.sort;
+        const rating = this.queryStr.rating;
         if (category) {
             this.query = this.query.where({ category: category });
+        }
+        if (rating) {
+            this.query = this.query.where({ ratings: { $gte: rating } });
         }
         if (sort === 'lowToHigh') {
             this.query = this.query.sort('price');

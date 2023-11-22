@@ -71,7 +71,6 @@ export async function POST(request) {
 
 export async function GET(req, res) {
     const { searchParams } = new URL(req.url);
-    console.log(searchParams)
     const resPerPage = 3;
 
     try {
@@ -82,6 +81,7 @@ export async function GET(req, res) {
             keyword: searchParams.get('keyword'),
             sort: searchParams.get('sort'),
             page: searchParams.get('page'),
+            rating: searchParams.get('rating')
         });
 
         const products = await filters.search().filter().pagination(resPerPage).execute();
