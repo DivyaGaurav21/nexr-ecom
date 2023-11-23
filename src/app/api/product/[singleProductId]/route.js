@@ -5,7 +5,7 @@ import { Product } from '@/backend/models/product';
 // connectDatabase();
 
 //---------------get single todo list -------------------//
-export async function GET(request: NextResponse, { params }: { params: { singleProductId: string } }) {
+export async function GET(request, { params }) {
     try {
         const { singleProductId } = params;
         dbConnect()
@@ -17,7 +17,7 @@ export async function GET(request: NextResponse, { params }: { params: { singleP
         },
             { status: 200 }
         )
-    } catch (error: any) {
+    } catch (error) {
         return NextResponse.json(
             { error: error.message },
             { status: 502 }
