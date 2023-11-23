@@ -1,8 +1,15 @@
+/**
+ * SimilarItems Component displays a section with similar products based on the product category.
+ * @param {Object[]} allProductData - Array of all product data.
+ * @param {string} productCateogary - The category of the main product for which similar items are displayed.
+ * @returns {JSX.Element} - Rendered component with similar product cards.
+ */
+
 'use client'
 import React from 'react';
 import SimilarProductCard from './SimilarProductCard';
 const SimilarItems = ({ allProductData, productCateogary }) => {
-
+    // Filter products based on the specified category
     const allRelatedProducts = allProductData.filter(product => product.category === productCateogary);
     console.log(allRelatedProducts)
 

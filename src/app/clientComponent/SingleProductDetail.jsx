@@ -1,3 +1,9 @@
+/**
+ * SingleProductDetail Component displays detailed information about a single product, including images,
+ * ratings, price, description, stock status, category, and seller. It also allows users to add the product to the cart.
+ * @param {Object} singleProductData - Object containing details of the single product.
+ * @returns {JSX.Element} - Rendered component with detailed product information.
+ */
 'use client'
 import React, { useRef, useContext } from "react";
 import StarRatings from "react-star-ratings";
@@ -7,7 +13,7 @@ import CartContext from '../context/CartContext'
 const SingleProductDetail = ({ singleProductData }) => {
 
     const { addItemToCart } = useContext(CartContext);
-
+    // Function to handle adding the product to the cart
     const addToCartHandler = () => {
         addItemToCart({
             product: singleProductData._id,
@@ -21,13 +27,14 @@ const SingleProductDetail = ({ singleProductData }) => {
 
 
     const imgRef = useRef(null);
-
+    // Function to set image preview when clicked on thumbnai
     const setImgPreview = (url) => {
         imgRef.current.src = url;
     };
 
     const inStock = singleProductData?.stock >= 1;
 
+    // Breadcrumbs for navigation
     const breadCrumbs = [
         { name: "Home", url: "/productList" },
         {
@@ -38,11 +45,13 @@ const SingleProductDetail = ({ singleProductData }) => {
 
     return (
         <>
+            {/* Breadcrumbs for navigation */}
             <BreadCrumbs breadCrumbs={breadCrumbs} />
             <section className="bg-white py-10">
                 <div className="container max-w-screen-xl mx-auto px-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                         <aside>
+                            {/* Product images and thumbnail gallery */}
                             <div className="border border-gray-200 shadow-sm p-3 text-center rounded mb-5 w-[300px] h-[250px] md:w-[400px] md:h-[350px] m-auto">
                                 <img
                                     ref={imgRef}
@@ -57,6 +66,7 @@ const SingleProductDetail = ({ singleProductData }) => {
                                 />
                             </div>
                             <div className="w-full flex gap-2 flex-wrap justify-center">
+                                {/* Thumbnail gallery */}
                                 {singleProductData?.images?.map((img, index) => (
                                     <a
                                         key={index}
@@ -73,9 +83,11 @@ const SingleProductDetail = ({ singleProductData }) => {
                             </div>
                         </aside>
                         <main>
+                            {/* Product details */}
                             <h2 className="font-semibold text-3xl mb-4"> {singleProductData?.name} </h2>
 
                             <div className="flex flex-wrap items-center space-x-2 mb-2">
+                                {/* Star ratings, average rating, and verified status */}
                                 <div className="ratings">
                                     <StarRatings
                                         rating={singleProductData?.ratings}
@@ -90,7 +102,7 @@ const SingleProductDetail = ({ singleProductData }) => {
 
                                 <span className="text-green-500">Verified</span>
                             </div>
-
+                            {/* Product price, description, and add to cart button */}
                             <p className="mb-4 font-semibold text-2xl">₹  {singleProductData?.price.toLocaleString()}</p>
 
                             <p className="mb-4 text-gray-500">{singleProductData?.description}</p>
@@ -106,7 +118,7 @@ const SingleProductDetail = ({ singleProductData }) => {
                                     Add to Cart
                                 </a>
                             </button>
-
+                            {/* Additional product details */}
                             <ul className="mb-5">
                                 <li className="mb-1">
                                     <b className="font-medium w-36 inline-block">Stock:</b>
@@ -135,6 +147,7 @@ const SingleProductDetail = ({ singleProductData }) => {
                             Other Customers Reviews
                         </h1>
                         {/* Add your review component here */}
+                        {/* i will do it later  */}
                     </div>
                 </div>
             </section>

@@ -1,3 +1,9 @@
+/**
+ * LogIn component handles user login functionality, including email/password login, Google sign-in, and Twitter sign-in.
+ * Uses Firebase authentication methods for user authentication.
+ * Displays login form, input fields, and authentication buttons.
+ * @returns {JSX.Element} - Rendered component for user login.
+ */
 'use client'
 import React, { useState } from 'react';
 import Styles from '../style/LoginSingnup.module.css'
@@ -9,13 +15,15 @@ import { useFirebaseAppContext } from '../context/FirebaseContext'
 
 
 const LogIn = () => {
+    // Retrieve authentication methods from Firebase context
     const { handleSignInWithGoogle, handleSignInWithEmailAndPassword, handleSignInWithTwitter } = useFirebaseAppContext();
     const notify = (str) => toast(str);
-
+    // State for email, password, and showPassword toggle
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
+    // Handler for login form submission
     const loginHandler = (e) => {
         e.preventDefault();
         notify("Login SuccessFully")
@@ -23,24 +31,25 @@ const LogIn = () => {
         setPassword("");
 
     }
-
+    // Render the login form
     return (
 
         <>
             <div className='flex h-[85vh] bg-white'>
                 <div className='m-auto rounded-xl w-[95%] h-[95%] md:w-3/5 md:h-3/4 flex flex-col md:flex-row justify-center'>
-
+                    {/* Image section */}
                     <div className='w-[100%] md:w-1/2 h-[40%] md:h-full flex justify-center content-center'>
                         <img src="https://www.cloudways.com/blog/wp-content/uploads/Ecommerce-Shopping-Infographics.png" className='w-full rounded-s-xl' alt='logo_img' />
                     </div>
-
+                    {/* Login form section */}
                     <div className=' w-[100%] md:w-1/2  h-2/3 md:h-full rounded-e-xl text-white'>
                         <div className={Styles.loginPage}>
                             <div className="w-full">
                                 <h1 className='text-red-800'>Welcome To Ecommerce Site</h1>
                                 <h4>Welcome back! Please enter your Login Credentials</h4>
-
+                                {/* Login form */}
                                 <form className="mt-4" onSubmit={loginHandler}>
+                                    {/* Email input */}
                                     <div className="mb-3">
                                         <label htmlFor="email" className={Styles.label}>Email</label>
                                         <input
@@ -52,6 +61,7 @@ const LogIn = () => {
                                             value={email}
                                         />
                                     </div>
+                                    {/* Password input with show/hide toggle */}
                                     <div className="mb-3 relative">
                                         <label htmlFor="password" className={Styles.label}>Password</label>
                                         <input
@@ -64,6 +74,7 @@ const LogIn = () => {
                                         />
                                         <span onClick={() => setShowPassword(show => !show)} className={Styles.eye}>👁</span>
                                     </div>
+                                    {/* Remember me and Forgot password links */}
                                     <div className="mb-3 flex flex-wrap content-center justify-between">
                                         <div className='flex flex-row gap-2'>
                                             <input id="remember" type="checkbox" className="mr-1 checked:bg-purple-700" />
@@ -71,6 +82,7 @@ const LogIn = () => {
                                         </div>
                                         <a href="#" className={Styles.forget}>Forgot password?</a>
                                     </div>
+                                    {/* Sign-in buttons */}
                                     <div className="mb-3">
                                         <button type='submit' className={Styles.signinbtn} onClick={handleSignInWithEmailAndPassword}>Sign in</button>
                                         <button type='button' className={Styles.authbtn} onClick={handleSignInWithGoogle}>
@@ -83,14 +95,14 @@ const LogIn = () => {
                                         </button>
                                     </div>
                                 </form>
-
+                                {/* Sign-up link */}
                                 <div className="text-center">
                                     <span className="text-xs text-gray-400 font-semibold">Don't have an account?</span>
                                     <Link href="/signup"><span className={Styles.forget}>Sign up</span></Link>
                                 </div>
                             </div>
 
-
+                            {/* Toast container for notifications */}
                             <ToastContainer
                                 position="top-right"
                                 autoClose={5000}

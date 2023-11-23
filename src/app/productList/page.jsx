@@ -1,3 +1,11 @@
+/**
+ * Page component is responsible for rendering a paginated list of products based on the provided search parameters.
+ * It uses the ProductList component to display the products and ReactPaginate for pagination.
+ * @param {Object} props - Component properties.
+ * @param {Object} props.searchParams - Object containing search parameters like keyword, category, sort, and rating.
+ * @returns {JSX.Element} - Rendered Page component.
+ */
+
 'use client'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -10,6 +18,7 @@ const Page = ({ searchParams }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [productData, setProductData] = useState([]);
 
+    // Construct URL parameters for the API request
     const urlParams = {
         keyword: searchParams.keyword,
         page: currentPage,
@@ -17,16 +26,16 @@ const Page = ({ searchParams }) => {
         sort: searchParams.sort,
         rating: searchParams.rating
     }
-
+    // Convert URL parameters to a query string
     const searchQuery = queryString.stringify(urlParams);
-    console.log(searchQuery);
 
-
+    // Handle page change in the pagination component
     const handlePageClick = (e) => {
         setCurrentPage(e.selected + 1);
     };
 
     useEffect(() => {
+        // Fetch product data based on the search parameters and current page
         const fetchInitialData = async () => {
             try {
                 const response = await axios.get(`${process.env.API_URL}/api/product?${searchQuery}`);
@@ -35,7 +44,7 @@ const Page = ({ searchParams }) => {
                 console.error('Error fetching product data:', error);
             }
         };
-
+        // Call the fetchInitialData function when the component mounts or when the currentPage or searchParams change
         fetchInitialData();
     }, [currentPage, searchParams]);
 

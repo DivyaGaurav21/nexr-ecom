@@ -1,3 +1,9 @@
+/**
+ * Search Component provides a search input and button for searching products.
+ * It utilizes Next.js useRouter for navigation.
+ * @returns {JSX.Element} - Rendered component for searching products.
+ */
+
 'use client'
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -5,9 +11,16 @@ import { useRouter } from "next/navigation";
 
 
 const Search = () => {
-
+    // State to manage the search keyword
     const [keyword, setKeyword] = useState('');
+    // Next.js useRouter hook for navigation
     const router = useRouter();
+
+    /**
+   * Handles the form submission, redirects to the search page with the entered keyword.
+   * If the keyword is empty, redirects to the home page.
+   * @param {Event} e - Form submission event.
+   */
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -19,6 +32,7 @@ const Search = () => {
         setKeyword('');
     }
 
+    // Render the search form
     return (
         <form className="flex flex-nowrap items-center w-full order-last md:order-none mt-5 md:mt-0 md:w-2/4 lg:w-2/4"
             onSubmit={submitHandler}
