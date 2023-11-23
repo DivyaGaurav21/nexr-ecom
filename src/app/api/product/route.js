@@ -71,7 +71,7 @@ export async function POST(request) {
 
 export async function GET(req, res) {
     const { searchParams } = new URL(req.url);
-    const resPerPage = 3;
+    const resPerPage = 4;
 
     try {
         dbConnect();

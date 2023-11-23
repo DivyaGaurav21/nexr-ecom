@@ -9,7 +9,7 @@ import { useFirebaseAppContext } from '../context/FirebaseContext'
 
 
 const LogIn = () => {
-    const { handleSignInWithGoogle, handleSignInWithFacebook, handleSignInWithEmailAndPassword, handleSignInWithTwitter } = useFirebaseAppContext();
+    const { handleSignInWithGoogle, handleSignInWithEmailAndPassword, handleSignInWithTwitter } = useFirebaseAppContext();
     const notify = (str) => toast(str);
 
     const [email, setEmail] = useState('');

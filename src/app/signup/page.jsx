@@ -6,8 +6,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 
+import { useFirebaseAppContext } from '../context/FirebaseContext'
 
 const SignUp = () => {
+    const { signUpUserWithEmailAndPassword } = useFirebaseAppContext();
+
     const notify = (str) => toast(str);
 
     const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +20,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [userNameError, setUserNameError] = useState(''); //setUserNamerError("name is not legal")
+    const [userNameError, setUserNameError] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
 
@@ -48,25 +51,34 @@ const SignUp = () => {
         }
     };
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         if (!username || !email || !password) {
-            notify("Please enter all field");
+            notify("Please enter all fields");
             return;
         }
         if (password !== confirmPassword) {
-            notify("password and confirm password doesnot match")
+            notify("Password and Confirm Password do not match");
             return;
         }
-        const user = { username, email, password };
-        localStorage.setItem('USER', JSON.stringify(user));
-        console.log(user)
-        notify("registerd successfully")
-        setUsername("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("")
+        try {
+            // Sign up the user with Firebase
+            await signUpUserWithEmailAndPassword(email, password);
+            // If signup is successful, store user data in localStorage (Note: This is just for demonstration, not recommended for sensitive information)
+            const user = { username, email };
+            localStorage.setItem('USER', JSON.stringify(user));
+            setUsername("");
+            setEmail("");
+            setPassword("");
+            setConfirmPassword("");
+            notify("Registered successfully");
+        } catch (error) {
+            console.error('Firebase Signup Error:', error);
+            notify('Error during registration. Please try again.');
+        }
     };
+
+
     return (
 
         <>

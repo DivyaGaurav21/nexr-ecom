@@ -29,7 +29,7 @@ const ProductItem = ({ product }) => {
                                 : "https://www.designinfo.in/wp-content/uploads/2023/01/Apple-iPhone-14-Pro-Mobile-Phone-493177786-i-1-1200Wx1200H-485x485-optimized.jpeg"
                         }
                         alt="product name"
-                        className="object-fill"
+                        className="object-fill max-h-52"
                     />
                 </div>
                 <div className="md:w-2/4">

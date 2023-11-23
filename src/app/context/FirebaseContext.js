@@ -1,18 +1,17 @@
 'use client'
 import React, { createContext, useContext, useState } from 'react'
+
 import {
     getAuth,
+    signInWithPopup,
     createUserWithEmailAndPassword,
     GoogleAuthProvider,
-    signInWithPopup,
-    FacebookAuthProvider,
-    GithubAuthProvider,
     signInWithEmailAndPassword,
     TwitterAuthProvider,
+    GithubAuthProvider,
     signOut
 } from 'firebase/auth';
-// import real time firebase database 
-import { getDatabase, set, ref } from 'firebase/database'
+
 // import firebaseApp Configuration
 import { firebaseApp } from './firebaseConfig'
 
@@ -26,9 +25,8 @@ export const useFirebaseAppContext = () => {
 // ==============================================================//
 const FirebaseContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    console.log(user)
 
-    // //establish database by firebase
-    const firebaseDatabase = getDatabase(firebaseApp);
     //establish auth credentials by firebase
     const firebaseAuth = getAuth(firebaseApp);
 
@@ -42,10 +40,7 @@ const FirebaseContextProvider = ({ children }) => {
             console.log(err);
         }
     }
-    //----function to put data into firebase database------//
-    const putData = (key, data) => {
-        return set(ref(firebaseDatabase, key), data);
-    }
+
     //------function to sign-in with google account--------//
     const handleSignInWithGoogle = async () => {
         const googleProvider = new GoogleAuthProvider();
@@ -118,6 +113,7 @@ const FirebaseContextProvider = ({ children }) => {
         try {
             await signOut(firebaseAuth);
             setUser(null);
+
         } catch (err) {
             console.log(err);
         }
@@ -128,7 +124,6 @@ const FirebaseContextProvider = ({ children }) => {
     return (
         <AppContext.Provider value={{
             signUpUserWithEmailAndPassword,
-            putData,
             handleSignInWithGoogle,
             handleSignInWithFacebook,
             handleSignInWithGithub,

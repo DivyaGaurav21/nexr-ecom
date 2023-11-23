@@ -6,8 +6,10 @@ import Image from "next/image"
 import Logo from "@/../public/svg/logo-no-background.svg"
 import Search from "./Search"
 import CartContext from '../../context/CartContext'
+import { useFirebaseAppContext } from "@/app/context/FirebaseContext"
 
 const NavBar = () => {
+  const { user } = useFirebaseAppContext();
 
   const { cart } = useContext(CartContext);
   const cartItems = cart?.cartItems;
@@ -40,13 +42,19 @@ const NavBar = () => {
                   Cart (<b>{cartItems?.length || 0}</b>)
                 </span>
               </Link>
+              {user ?
+                <Link href='userProfile' className="px-3 py-2 inline-block text-center text-yellow-600 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:border-gray-300">
+                  <h1 className="font-bold"><i class="fa-solid fa-user mr-1"></i>{user.displayName}</h1>
+                </Link>
+                :
               <Link
-                href="/login"
-                className="px-3 py-2 inline-block text-center text-yellow-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:border-gray-300"
-              >
-                <i className="text-yellow-600 w-5 fa fa-user"></i>
-                <span className="hidden lg:inline ml-1">Sign in/Sign up</span>
-              </Link>
+                  href="/login"
+                  className="px-3 py-2 inline-block text-center text-yellow-700 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 hover:border-gray-300"
+                >
+                  <i className="text-yellow-600 w-5 fa fa-user"></i>
+                  <span className="hidden lg:inline ml-1">Sign in/Sign up</span>
+                </Link>
+              }
             </div>
           </div>
         </Container>
